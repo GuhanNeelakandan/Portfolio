@@ -1,0 +1,12 @@
+.three-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.three-bg canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

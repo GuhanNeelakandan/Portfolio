@@ -1,0 +1,194 @@
+.skills-section {
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.skills-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+/* Skill Card */
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transition: opacity 0.3s ease;
+  opacity: 0.5;
+}
+
+.card-cyan::before { background: linear-gradient(90deg, var(--accent-cyan), transparent); }
+.card-purple::before { background: linear-gradient(90deg, var(--accent-purple), transparent); }
+.card-pink::before { background: linear-gradient(90deg, var(--accent-pink), transparent); }
+.card-green::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.card-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.card-category {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Skill Bar */
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-item {}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.skill-percent {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.skill-track {
+  height: 4px;
+  background: var(--border-subtle);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 100%;
+  border-radius: 2px;
+  width: 0%;
+  position: relative;
+}
+
+.skill-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Color variants */
+.color-cyan { color: var(--accent-cyan); }
+.color-purple { color: var(--accent-purple); }
+.color-pink { color: var(--accent-pink); }
+.color-green { color: var(--accent-green); }
+
+.skill-bar.color-cyan { background: linear-gradient(90deg, rgba(0,245,255,0.4), var(--accent-cyan)); }
+.skill-bar.color-cyan::after { background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+
+.skill-bar.color-purple { background: linear-gradient(90deg, rgba(124,58,237,0.4), var(--accent-purple)); }
+.skill-bar.color-purple::after { background: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple); }
+
+.skill-bar.color-pink { background: linear-gradient(90deg, rgba(247,37,133,0.4), var(--accent-pink)); }
+.skill-bar.color-pink::after { background: var(--accent-pink); box-shadow: 0 0 8px var(--accent-pink); }
+
+.skill-bar.color-green { background: linear-gradient(90deg, rgba(57,255,20,0.4), var(--accent-green)); }
+.skill-bar.color-green::after { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+
+/* Tools */
+.tools-section {}
+
+.tools-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tool-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 8px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: var(--transition);
+  letter-spacing: 0.04em;
+}
+
+.tool-chip:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
