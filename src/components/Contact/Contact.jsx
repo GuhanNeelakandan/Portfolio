@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Contact.css';
+import gimg from './letter-g.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -219,11 +220,7 @@ const Contact = () => {
       {/* Footer */}
       <footer className="site-footer">
         <div className="container footer-inner">
-          <span className="footer-logo">
-            <span style={{ color: 'var(--accent-cyan)' }}>&lt;</span>
-            GuhanDev
-            <span style={{ color: 'var(--accent-cyan)' }}>/&gt;</span>
-          </span>
+          <img src={gimg} width={40} height={40} className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}/>
           <p className="footer-copy">
             Designed & built by <span className="gradient-text">Guhan</span> — {new Date().getFullYear()}
           </p>

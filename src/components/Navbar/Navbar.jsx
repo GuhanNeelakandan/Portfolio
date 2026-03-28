@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './Navbar.css';
+import gimg from './letter-g.png'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -63,11 +64,12 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navRef}>
       <div className="nav-container">
         {/* Logo */}
-        <a href="#home" className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}>
+        <img src={gimg} width={40} height={40} className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}/>
+        {/* <a href="#home" className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}>
           <span className="logo-bracket">&lt;</span>
-          <span className="logo-text">GuhanDev</span>
+          <span className="logo-text"></span>
           <span className="logo-bracket">/&gt;</span>
-        </a>
+        </a> */}
 
         {/* Desktop Links */}
         <ul className="nav-links">
