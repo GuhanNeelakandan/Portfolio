@@ -5,6 +5,7 @@ import gimg from './letter-g.png'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
+  { label: 'Workshop', href: '#workshop' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
