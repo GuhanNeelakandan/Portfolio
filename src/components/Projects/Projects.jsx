@@ -9,75 +9,111 @@ gsap.registerPlugin(ScrollTrigger);
 const PROJECTS = [
   {
     id: 1,
-    title: "CloudKart E-Commerce",
-    description: "Full-stack e-commerce platform with real-time inventory management, Stripe payments, and a React-powered admin dashboard.",
-    tags: ["React", "Node.js", "PostgreSQL", "Redis", "Stripe"],
-    image: null, // Replace with image path: "/images/project1.png"
-    color: "#00f5ff",
-    github: "https://github.com",
-    live: "https://example.com",
+    title: 'Studytez',
+    description: 'International education consultancy website focused on study-abroad admissions, visa guidance, and lead capture for students planning to study in the UK, Canada, USA, and Europe.',
+    tags: ['React', 'HTML', 'CSS', 'Bootstrap', 'MongoDB', 'Express', 'Node.js'],
+    image: '/images/studytez.png',
+    color: '#00f5ff',
+    github: null,
+    live: 'https://studytez.com/',
     featured: true,
-    year: "2024",
+    year: '2025',
   },
   {
     id: 2,
-    title: "DevCollab — Real-time IDE",
-    description: "Browser-based collaborative code editor supporting 20+ languages, live cursors, video calls, and AI-assisted code completion.",
-    tags: ["Next.js", "WebSockets", "Monaco Editor", "WebRTC", "AWS"],
-    image: null,
-    color: "#7c3aed",
-    github: "https://github.com",
-    live: "https://example.com",
+    title: 'Studytez Admin Panel',
+    description: 'MERN admin portal for managing student enquiries, applications, document tracking, follow-ups, and counsellor workflow from a central backend dashboard.',
+    tags: ['React', 'HTML', 'CSS', 'Bootstrap', 'MongoDB', 'Express', 'Node.js'],
+    image: '/images/adminstudytez.png',
+    color: '#7c3aed',
+    github: null,
+    live: 'https://admin.studytez.com/',
     featured: true,
-    year: "2024",
+    year: '2025',
   },
   {
     id: 3,
-    title: "PulseAnalytics Dashboard",
-    description: "SaaS analytics platform with custom charting engine, multi-tenant architecture, and automated reporting pipeline.",
-    tags: ["React", "Python", "TimescaleDB", "Grafana", "Docker"],
-    image: null,
-    color: "#f72585",
-    github: "https://github.com",
-    live: "https://example.com",
-    featured: false,
-    year: "2023",
+    title: 'MMDJ Food Supplies',
+    description: 'Customer-facing grocery delivery app for fresh produce, household essentials, and order placement with a smooth online shopping experience.',
+    tags: ['React', 'HTML', 'CSS', 'Bootstrap', 'MongoDB', 'Express', 'Node.js'],
+    image: '/images/mmdj.png',
+    color: '#f72585',
+    github: null,
+    live: 'https://mmdjapp.svstraders.com/',
+    featured: true,
+    year: '2026',
   },
   {
     id: 4,
-    title: "NexChat Messaging App",
-    description: "End-to-end encrypted messaging app with push notifications, media sharing, and offline-first architecture.",
-    tags: ["React Native", "Node.js", "Socket.io", "MongoDB"],
-    image: null,
-    color: "#39ff14",
-    github: "https://github.com",
-    live: null,
+    title: 'SVS Family Shopper',
+    description: 'Modern grocery ordering platform for daily essentials, fresh vegetables, fruits, and home delivery with a clean storefront and checkout flow.',
+    tags: ['React', 'MongoDB', 'UI/UX', 'Storefront', 'Orders'],
+    image: '/images/svs.png',
+    color: '#39ff14',
+    github: null,
+    live: 'https://www.svsapp.svstraders.com/',
     featured: false,
-    year: "2023",
+    year: '2026',
   },
   {
     id: 5,
-    title: "AutoDeploy CLI Tool",
-    description: "CLI utility that automates Kubernetes deployments, manages secrets, and provides rollback capabilities with a single command.",
-    tags: ["Go", "Kubernetes", "Helm", "Terraform"],
-    image: null,
-    color: "#00f5ff",
-    github: "https://github.com",
-    live: null,
+    title: 'Krishna Traders',
+    description: 'Wholesale and retail grocery portal built for product catalog browsing, customer ordering, and business-focused online selling operations.',
+    tags: ['React', 'Node.js', 'MongoDB', 'B2B', 'Inventory'],
+    image: '/images/krishna.png',
+    color: '#00f5ff',
+    github: null,
+    live: 'https://krishnatraders-app.svstraders.com/',
     featured: false,
-    year: "2022",
+    year: '2026',
   },
   {
     id: 6,
-    title: "AI Content Generator",
-    description: "GPT-4 powered content generation platform with custom fine-tuning, SEO analysis, and team collaboration features.",
-    tags: ["Next.js", "OpenAI", "Prisma", "tRPC", "Vercel"],
-    image: null,
-    color: "#7c3aed",
-    github: "https://github.com",
-    live: "https://example.com",
+    title: 'SKS Fresh Kartz',
+    description: 'Fresh produce commerce app with category-based product listings, seasonal inventory, and convenient online ordering for local grocery demand.',
+    tags: ['React', 'E-commerce', 'MongoDB', 'Cart', 'Delivery'],
+    image: '/images/sks.png',
+    color: '#7c3aed',
+    github: null,
+    live: 'https://sksfreshkartzapp.svstraders.com/',
     featured: false,
-    year: "2024",
+    year: '2026',
+  },
+  {
+    id: 7,
+    title: 'Labham General Stores',
+    description: 'Indian and South Asian grocery marketplace designed for UK customers with product discovery, category browsing, and order delivery flows.',
+    tags: ['React', 'MongoDB', 'Store App', 'Groceries', 'UK Market'],
+    image: '/images/labham.png',
+    color: '#f72585',
+    github: null,
+    live: 'https://www.labhamgeneralstores.org/',
+    featured: false,
+    year: '2026',
+  },
+  {
+    id: 8,
+    title: 'NeoSmile Dental',
+    description: 'Healthcare and dental clinic website with service information, contact form, and lead-generation workflow for appointments and patient enquiries.',
+    tags: ['React', 'Healthcare', 'Forms', 'Website', 'SEO'],
+    image: '/images/neosmildental.png',
+    color: '#39ff14',
+    github: null,
+    live: 'https://neosmiledentalomr.in/',
+    featured: false,
+    year: '2023',
+  },
+  {
+    id: 9,
+    title: 'Kathir Limited',
+    description: 'Corporate business website for a company profile, service presentation, and trust-building brand presence for clients and partners.',
+    tags: ['React', 'Business Website', 'Corporate', 'Branding', 'SEO'],
+    image: '/images/kathirlimited.png',
+    color: '#00f5ff',
+    github: null,
+    live: 'https://kathirlimited.com/',
+    featured: false,
+    year: '2026',
   },
 ];
 // ─────────────────────────────────────────────────────
@@ -141,13 +177,15 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         <div className="project-links">
-          <a href={project.github} className="project-link" target="_blank" rel="noreferrer">
-            <span>GitHub</span>
-            <span className="link-arrow">↗</span>
-          </a>
+          {project.github && (
+            <a href={project.github} className="project-link" target="_blank" rel="noreferrer">
+              <span>GitHub</span>
+              <span className="link-arrow">↗</span>
+            </a>
+          )}
           {project.live && (
-            <a href={project.live} className="project-link live" target="_blank" rel="noreferrer">
-              <span>Live Demo</span>
+            <a href={project.live} className={`project-link ${project.github ? 'live' : ''}`} target="_blank" rel="noreferrer">
+              <span>Live</span>
               <span className="link-arrow">↗</span>
             </a>
           )}
