@@ -55,8 +55,8 @@ function App() {
       <Navbar />
       <main>
         <Home />
-        <Workshop />
         <About />
+        <Workshop />
         <Skills />
         <Projects />
         <Achievement />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Workshop.css';
 
 const WORKSHOP_IMAGES = [
@@ -11,23 +11,41 @@ const WORKSHOP_IMAGES = [
 ];
 
 const Workshop = () => {
-  const [activeImage, setActiveImage] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setActiveImage(current => (current + 1) % WORKSHOP_IMAGES.length);
-    }, 5000);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
-    return () => window.clearInterval(interval);
+  const showPrevious = useCallback(() => {
+    setLightboxIndex(current =>
+      current === null
+        ? null
+        : (current - 1 + WORKSHOP_IMAGES.length) % WORKSHOP_IMAGES.length
+    );
   }, []);
 
-  const showPrevious = () => {
-    setActiveImage(current => (current - 1 + WORKSHOP_IMAGES.length) % WORKSHOP_IMAGES.length);
-  };
+  const showNext = useCallback(() => {
+    setLightboxIndex(current =>
+      current === null ? null : (current + 1) % WORKSHOP_IMAGES.length
+    );
+  }, []);
 
-  const showNext = () => {
-    setActiveImage(current => (current + 1) % WORKSHOP_IMAGES.length);
-  };
+  useEffect(() => {
+    if (lightboxIndex === null) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') showPrevious();
+      if (event.key === 'ArrowRight') showNext();
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [lightboxIndex, closeLightbox, showPrevious, showNext]);
 
   return (
     <section className="workshop-section section" id="workshop">
@@ -43,51 +61,6 @@ const Workshop = () => {
         </div>
 
         <div className="workshop-content">
-          <div className="workshop-gallery" aria-roledescription="carousel" aria-label="Workshop photos">
-            <div className="workshop-image-frame">
-              {WORKSHOP_IMAGES.map((image, index) => (
-                <img
-                  key={image}
-                  className={`workshop-image ${index === activeImage ? 'active' : ''}`}
-                  src={image}
-                  alt={`Workshop at Jeppiaar Engineering College, photo ${index + 1}`}
-                  aria-hidden={index !== activeImage}
-                />
-              ))}
-              <span className="workshop-photo-count">
-                {String(activeImage + 1).padStart(2, '0')} / {String(WORKSHOP_IMAGES.length).padStart(2, '0')}
-              </span>
-              <button
-                className="workshop-arrow workshop-arrow-previous"
-                type="button"
-                onClick={showPrevious}
-                aria-label="Previous workshop photo"
-              >
-                ‹
-              </button>
-              <button
-                className="workshop-arrow workshop-arrow-next"
-                type="button"
-                onClick={showNext}
-                aria-label="Next workshop photo"
-              >
-                ›
-              </button>
-            </div>
-            <div className="workshop-dots" aria-label="Choose workshop photo">
-              {WORKSHOP_IMAGES.map((image, index) => (
-                <button
-                  key={image}
-                  className={`workshop-dot ${index === activeImage ? 'active' : ''}`}
-                  type="button"
-                  onClick={() => setActiveImage(index)}
-                  aria-label={`Show workshop photo ${index + 1}`}
-                  aria-current={index === activeImage ? 'true' : undefined}
-                />
-              ))}
-            </div>
-          </div>
-
           <div className="workshop-details">
             <span className="workshop-label">One-day workshop</span>
             <h3>Jeppiaar Engineering College</h3>
@@ -108,8 +81,84 @@ const Workshop = () => {
               <span>Student engagement</span>
             </div>
           </div>
+
+          <div className="workshop-mosaic" aria-label="Workshop photo gallery">
+            {WORKSHOP_IMAGES.map((image, index) => (
+              <button
+                key={image}
+                type="button"
+                className="workshop-mosaic-item"
+                onClick={() => setLightboxIndex(index)}
+                aria-label={`View workshop photo ${index + 1} of ${WORKSHOP_IMAGES.length}`}
+              >
+                <img
+                  src={image}
+                  alt={`Workshop at Jeppiaar Engineering College, photo ${index + 1}`}
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <span className="workshop-mosaic-overlay" aria-hidden="true">
+                  <span className="workshop-mosaic-index">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="workshop-mosaic-zoom">View</span>
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
+
+      {lightboxIndex !== null && (
+        <div
+          className="workshop-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged workshop photo"
+          onClick={closeLightbox}
+        >
+          <button
+            type="button"
+            className="workshop-lightbox-close"
+            onClick={closeLightbox}
+            aria-label="Close enlarged photo"
+          >
+            ×
+          </button>
+          <button
+            type="button"
+            className="workshop-lightbox-nav workshop-lightbox-nav--prev"
+            onClick={(event) => {
+              event.stopPropagation();
+              showPrevious();
+            }}
+            aria-label="Previous photo"
+          >
+            ‹
+          </button>
+          <figure className="workshop-lightbox-frame" onClick={(event) => event.stopPropagation()}>
+            <img
+              src={WORKSHOP_IMAGES[lightboxIndex]}
+              alt={`Workshop at Jeppiaar Engineering College, photo ${lightboxIndex + 1}`}
+            />
+            <figcaption>
+              {String(lightboxIndex + 1).padStart(2, '0')} /{' '}
+              {String(WORKSHOP_IMAGES.length).padStart(2, '0')}
+            </figcaption>
+          </figure>
+          <button
+            type="button"
+            className="workshop-lightbox-nav workshop-lightbox-nav--next"
+            onClick={(event) => {
+              event.stopPropagation();
+              showNext();
+            }}
+            aria-label="Next photo"
+          >
+            ›
+          </button>
+        </div>
+      )}
     </section>
   );
 };
